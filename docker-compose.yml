@@ -1,0 +1,64 @@
+version: '2' # specify docker-compose version
+
+# Define the services/containers to be run
+services:
+  database: # name of the third service
+    image: mongo
+    ports:
+      - "27017:27017" # specify port forewarding
+    container_name: database
+    volumes:
+      - ./data/mongo:/data/db
+
+  vue-frontend: # name of the first service
+    build:
+      context: .
+      args:
+        - APP_DIR=/vue-frontend
+      dockerfile: dockerfile-vue
+    environment:
+      - APP_DIR=/vue-frontend
+    container_name: vue-frontend
+    volumes:
+      - ./lib:/vue-frontend/lib/:rw
+      - ./vue:/vue-frontend/:rw
+      - /vue-frontend/node_modules
+    ports:
+      - "8080:8080" # specify port forewarding
+    restart: always
+    depends_on:
+      - nodejs
+
+  angular-frontend: # name of the first service
+    build:
+      context: .
+      args:
+        - APP_DIR=/angular-frontend
+      dockerfile: dockerfile-angular
+    environment:
+      - APP_DIR=/angular-frontend
+    container_name: angular-frontend
+    volumes:
+      - ./lib:/angular-frontend/lib/:rw
+      - ./angular:/angular-frontend/:rw
+      - /angular-frontend/node_modules
+    ports:
+      - "4200:4200" # specify port forewarding
+    restart: always
+    depends_on:
+      - nodejs
+      
+  nodejs: # name of the first service
+    build: server
+    volumes:
+      - ./server:/nodejs-backend/:rw
+      - /nodejs-backend/node_modules
+    ports:
+      - "3000:3000" # specify port forewarding
+    restart: always
+    links:
+      - database
+    environment:
+      WAIT_HOSTS: database:27017
+    depends_on:
+      - database

@@ -1,0 +1,20 @@
+FROM node:9
+
+ARG APP_DIR
+ENV APP_DIR=$APP_DIR
+
+
+# Install dependecies
+COPY angular/package.json $APP_DIR/package.json
+COPY lib $APP_DIR/
+
+WORKDIR $APP_DIR
+
+RUN npm install
+RUN npm rebuild node-sass
+
+EXPOSE 8080
+
+ADD angular/. $APP_DIR/
+
+CMD ["npm", "start"]

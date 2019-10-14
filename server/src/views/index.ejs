@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome to webpush server!</h1>
+      <form action="/send-notification" method="get">
+        <div class="form-group row">
+          <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Title</label>
+          <div class="col-sm-10">
+            <input type="text" name="title" class="form-control form-control-sm" value="Webpush">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Description</label>
+          <div class="col-sm-10">
+            <input type="text" name="desc" class="form-control form-control-sm" value="Your notifition is running">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Icon</label>
+          <div class="col-sm-10">
+            <input type="text" name="icon" id="icon-noti" class="form-control form-control-sm" onchange="updateInput(this.value)" value="https://image.freepik.com/free-vector/ecosystem-nature-icon-vector_53876-40455.jpg">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Image Preview</label>
+          <div class="col-sm-10">
+            <img class="img-fluid img-thumbnail" alt="Can't read image!" id="icon-preview" style="width: 100px;" src="https://image.freepik.com/free-vector/ecosystem-nature-icon-vector_53876-40455.jpg">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Push Notification</button>
+      </form>
+    </div>
+  </body>
+  <script>
+    (function() {
+   // your page initialization code here
+   // the DOM will be available here
+      const icon = document.getElementById("icon-noti");
+    })();
+    function updateInput(value) {
+     document.getElementById("icon-preview").src = value;
+    }
+  </script>
+</html>
