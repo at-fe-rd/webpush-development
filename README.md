@@ -37,8 +37,8 @@ Let take a look with some environment variables:
 
 ### Web Push Server
 Please check the content of `server/src/routes/notifications.js`.
-POST `/save-subscription` => save subscription key of website into database when website want to receive notification.
-GET `/send-notification` with query `title`, `desc`, `icon` => send notifications for all subscriptions in db.
+- POST `/save-subscription` => save subscription key of website into database when website want to receive notification.
+- GET `/send-notification` with query `title`, `desc`, `icon` => send notifications for all subscriptions in db.
 
 ## Installation in Product
 ### Requirements
