@@ -38,7 +38,7 @@
     "method-override": "^3.0.0",
     "mongodb": "*",
     "mongoose": "4.10.8",
-    "morgan": "~1.9.0",
+    "morgan": "~1.9.1",
     "multer": "*",
     "natives": "^1.1.5",
     "nodemailer": "*",
