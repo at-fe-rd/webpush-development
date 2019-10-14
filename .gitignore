@@ -1,0 +1,4 @@
+data
+data/*
+lib/web-push-js/node_modules
+lib/web-push-js/node_modules/*
